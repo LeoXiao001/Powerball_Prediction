@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Statistic{% endblock title %}
+
+{% block content %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+<!-- Main -->
+<div id="main" class="alt">
+    <section id="one">
+		<div class="inner">
+            <header class="major">
+                <h2>Powerball Winning Number Statistic</h2>
+            </header>
+            <p>Here shows powerball number drawn frequency since {{ oldest_date }}.</p>
+            <hr />
+            {# <div class="row aln-center" style="height: 100vh;"> #}
+            <div class="row aln-center" >
+                    <div class="col-6 col-12-small" style="height: 1500px;">
+                        <canvas id="white_ball_chart"></canvas>
+                    </div>
+                    <div class="col-6 col-12-small" style="height: 1500px;">
+                        <canvas id="red_ball_chart"></canvas>
+                    </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+<script>
+    var ctx_white = document.getElementById('white_ball_chart').getContext('2d');
+    var option = {
+        responsive: true,
+        maintainAspectRatio: false,
+        legend: { display: false },
+        title: {
+            display: true,
+            text: 'White Ball Number Frequency',
+            fontSize: 15,
+            fontColor: 'rgba(255, 255, 255, 1)',
+        },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    };
+    var white_ball_chart = new Chart(ctx_white, {
+        type: 'horizontalBar',
+        data: {
+            labels: [{% for i in white_ball_num %}{{ i }}, {% endfor %}],
+            datasets: [{
+                label: 'Frequency',
+                data: [{% for i in white_ball_freq %}{{ i }}, {% endfor %}],
+                backgroundColor: 'rgba(191, 255, 0, 0.2)',
+                borderColor: 'rgba(191, 255, 0, 1)',
+                borderWidth: 1,
+                hoverBackgroundColor: 'rgba(255, 51, 51, 1)'
+            }]
+        },
+        options: option,
+    });
+
+
+    var ctx_red = document.getElementById('red_ball_chart').getContext('2d');
+    option['title']['text'] = 'Red Ball Number Frequency'
+    var red_ball_chart = new Chart(ctx_red, {
+        type: 'horizontalBar',
+        data: {
+            labels: [{% for i in red_ball_num %}{{ i }}, {% endfor %}],
+            datasets: [{
+                label: 'Frequency',
+                data: [{% for i in red_ball_freq %}{{ i }}, {% endfor %}],
+                backgroundColor: 'rgba(255, 51, 51, 0.2)',
+                borderColor: 'rgba(255, 51, 51, 1)',
+                borderWidth: 1,
+                hoverBackgroundColor: 'rgba(191, 255, 0, 1)'
+            }]
+        },
+        options: option,
+    });
+
+</script>
+
+{% endblock content %}

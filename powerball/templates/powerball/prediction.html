@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Prediction{% endblock title %}
+
+{% block content %}
+
+<!-- Main -->
+<div id="main" class="alt">
+    <section id="one">
+		<div class="inner">
+            <header class="major">
+                <h2>Powerball Predicted Winning Number{{ predictions|length|pluralize }}</h2>
+            </header>
+            <p>
+                Here shows powerball predicted winning number{{ predictions|length|pluralize }}.
+                Someone will be the next billionaire. Why not you?
+            </p>
+            <hr />
+
+            <!-- Table -->
+            <div class="row aln-center">
+                <div class="col-8 col-12-small">
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>White Balls</th>
+                                    <th>Red Ball</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for prediction in predictions %}
+                                <tr>
+                                    <td>{{ prediction.0 }}</td>
+                                    <td>{{ prediction.1 }}</td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td>No prediction yet.</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <p>
+                Above predicted winning number{{ predictions|pluralize }} {{ predictions|pluralize:"is, are" }} valid before <strong>{{ valid_date }} ET</strong>.
+                Now is <strong id="ClockDisplay" style="color: salmon;"></strong> <strong style="color: salmon;">ET</strong>. Hurry up, clock is ticking.
+            </p>
+
+        </div>
+
+
+    </section>
+</div>
+
+{% endblock content %}

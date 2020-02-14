@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Pictures{% endblock title %}
+
+{% block content %}
+
+<!-- Main -->
+<div id="main" class="alt">
+    <section id="one">
+        <div class="inner">
+            <header class="major">
+                <h2>Cute Dog Pictures</h2>
+            </header>
+            <p>If you didn't win the powerball and you felt sad,
+                you can look at my dog's cute pictures and they can cheer you up.
+                He is a boy corgi and his name is Logan.
+                There are more pictures on Instagram, and you can check it by clicking the <a href="#footer">icon</a> at bottom.
+                If you feel happier when you look at these pictures, you may consider to buy a dog instead of lottery.
+            </p>
+            <hr />
+
+            <div class="gallery">
+                <div class="box alt">
+                    <div class="row gtr-150 gtr-uniform">
+                        {% for picture in pictures %}
+                            <div class="col-4">
+                                <span class="image fit">
+                                    <a href="{{ picture.image.url }}">
+                                        <img src="{{ picture.thumb.url }}" alt="{{ picture.alt }}" title="" />
+                                    </a>
+                                </span>
+                            </div>
+                        {% empty %}
+                            <p>No pictures</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</div>
+
+<script type="text/javascript" src="{% static 'assets/js/simple-lightbox.js' %}"></script>
+<script>
+        $(function () {
+            var $gallery = $('.gallery a').simpleLightbox();
+
+            $gallery.on('show.simplelightbox', function () {
+                console.log('Requested for showing');
+            })
+                .on('shown.simplelightbox', function () {
+                    console.log('Shown');
+                })
+                .on('close.simplelightbox', function () {
+                    console.log('Requested for closing');
+                })
+                .on('closed.simplelightbox', function () {
+                    console.log('Closed');
+                })
+                .on('change.simplelightbox', function () {
+                    console.log('Requested for change');
+                })
+                .on('next.simplelightbox', function () {
+                    console.log('Requested for next');
+                })
+                .on('prev.simplelightbox', function () {
+                    console.log('Requested for prev');
+                })
+                .on('nextImageLoaded.simplelightbox', function () {
+                    console.log('Next image loaded');
+                })
+                .on('prevImageLoaded.simplelightbox', function () {
+                    console.log('Prev image loaded');
+                })
+                .on('changed.simplelightbox', function () {
+                    console.log('Image changed');
+                })
+                .on('nextDone.simplelightbox', function () {
+                    console.log('Image changed to next');
+                })
+                .on('prevDone.simplelightbox', function () {
+                    console.log('Image changed to prev');
+                })
+                .on('error.simplelightbox', function (e) {
+                    console.log('No image found, go to the next/prev');
+                    console.log(e);
+                });
+        });
+</script>
+
+{% endblock content %}

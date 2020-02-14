@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+
+<!-- Banner -->
+<section id="banner" class="major">
+	<div class="inner">
+		<header class="major">
+			<h1>Powerball Prediction</h1>
+		</header>
+		<div class="content">
+			<p>Predict Powerball winning numbers.<br />
+			And show history records and statistic.</p>
+			<ul class="actions">
+				<li><a href="#one" class="button next scrolly">Get Started</a></li>
+			</ul>
+		</div>
+	</div>
+</section>
+
+<!-- Main -->
+<div id="main">
+
+	<!-- One -->
+		<section id="one" class="tiles">
+			<article>
+				<span class="image">
+					<img src="{% static "images/pic01.jpg" %}" alt="" />
+				</span>
+				<header class="major">
+					<h3><a href="{% url 'prediction' %}" class="link">Prediction</a></h3>
+					<p>Powerball Prediction</p>
+				</header>
+			</article>
+			<article>
+				<span class="image">
+					<img src="{% static "images/pic03.jpg" %}" alt="" />
+				</span>
+				<header class="major">
+					<h3><a href="{% url 'history' %}" class="link">History</a></h3>
+					<p>Powerball Draw History</p>
+				</header>
+			</article>
+			<article>
+				<span class="image">
+					<img src="{% static "images/pic03.jpg" %}" alt="" />
+				</span>
+				<header class="major">
+					<h3><a href="{% url 'statistic' %}" class="link">Statistic</a></h3>
+					<p>Powerball Winning Number Statistic</p>
+				</header>
+			</article>
+			<!-- <article>
+				<span class="image">
+					<img src="{% static "images/pic01.jpg" %}" alt="" />
+				</span>
+				<header class="major">
+					<h3><a href="{% url 'model' %}" class="link">Model</a></h3>
+					<p>Powerball Prediction Model</p>
+				</header>
+			</article> -->
+			<article>
+				<span class="image">
+					<img src="{% static "images/pic01.jpg" %}" alt="" />
+				</span>
+				<header class="major">
+					<h3><a href="{% url 'pictures' %}" class="link">Pictures</a></h3>
+					<p>Make you relax</p>
+				</header>
+			</article>
+		</section>
+</div>
+
+
+{% endblock content %}

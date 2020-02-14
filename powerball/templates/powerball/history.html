@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}History{% endblock title %}
+
+{% block content %}
+
+<!-- Main -->
+<div id="main" class="alt">
+    <section id="one">
+		<div class="inner">
+            <header class="major">
+                <h2>Powerball Draw History</h2>
+            </header>
+            <p>Below are the Powerball drawing results. It will update shortly after the draw takes place each Wednesday and Saturday.</p>
+            <hr />
+            <!-- Table -->
+            <div class="row aln-center">
+                <div class="col-8 col-12-small">
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Draw Date</th>
+                                    <th>White Balls</th>
+                                    <th>Red Ball</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for history in histories %}
+                                <tr>
+                                    <td>{{ history.draw_date|date:"m/d/Y" }}</td>
+                                    <td>{{ history.white_ball }}</td>
+                                    <td>{{ history.red_ball }}</td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td>No history yet.</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row aln-center">
+
+                <ul class="pagination">
+                    {% if page_obj.has_previous %}
+                    <li><a href="?page=1" class="button small">First</a></li>
+                    <li><a href="?page={{ page_obj.previous_page_number }}" class="page">{{ page_obj.previous_page_number }}</a></li>
+                    {% else %}
+                    <li><span class="button small disabled">First</span></li>
+                    {% endif %}
+                    <li><a href="" class="page active">{{ page_obj.number }}</a></li>
+                    {% if page_obj.has_next %}
+                        <li><a href="?page={{ page_obj.next_page_number }}" class="page">{{ page_obj.next_page_number }}</a></li>
+                        <li><a href="?page={{ page_obj.paginator.num_pages }}" class="button small">Last</a></li>
+                    {% else %}
+                        <li><span class="button small disabled">Last</span></li>
+                    {% endif %}
+                </ul>
+
+            </div>
+
+        </div>
+    </section>
+</div>
+
+{% endblock content %}

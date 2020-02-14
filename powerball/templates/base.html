@@ -1,0 +1,75 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+    <noscript><link rel="stylesheet" href="{% static 'assets/css/noscript.css' %}" /></noscript>
+    <link href="{% static 'assets/css/simplelightbox.css' %}" rel='stylesheet' type='text/css'>
+    <link href="{% static 'assets/css/pic.css' %}" rel='stylesheet' type='text/css'>
+    <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+
+    <title>{% block title %}{% endblock title %}</title>
+
+</head>
+
+<body class="is-preload" onload="showTime()">
+<!-- <body class="is-preload"> -->
+    <!-- Wrapper -->
+        <div id="wrapper">
+
+            <!-- Header -->
+                <header id="header" class="alt">
+                    <a href="{% url 'index' %}" class="logo"><strong>Powerball</strong> <span>Prediction</span></a>
+                    <nav>
+                        <a href="#menu">Menu</a>
+                    </nav>
+                </header>
+
+            <!-- Menu -->
+                <nav id="menu">
+                    <ul class="links">
+                        <li><a href="{% url 'index' %}">Home</a></li>
+                        <li><a href="{% url 'prediction' %}">Prediction</a></li>
+                        <li><a href="{% url 'history' %}">History</a></li>
+                        <li><a href="{% url 'statistic' %}">Statistic</a></li>
+                        <li><a href="{% url 'pictures' %}">Pictures</a></li>
+                    </ul>
+                    <ul class="actions stacked">
+                        <li><a href="{% url 'index' %}#one" class="button primary fit">Get Started</a></li>
+                    </ul>
+                </nav>
+
+            {% block content %}
+            {% endblock content %}
+
+            <!-- Footer -->
+                <footer id="footer">
+                    <div class="inner">
+                        <ul class="icons">
+                            <li><a href="http://www.instagram.com/logan_corgi" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+                        </ul>
+                        <ul class="copyright">
+                            <li>&copy;</li><li>logan_corgi</li>
+                        </ul>
+                    </div>
+                </footer>
+
+        </div>
+
+    <!-- Scripts -->
+        <!-- <script src="{% static 'assets/js/jquery.min.js' %}"></script> -->
+        <script src="{% static 'assets/js/jquery.scrolly.min.js' %}"></script>
+        <script src="{% static 'assets/js/jquery.scrollex.min.js' %}"></script>
+        <script src="{% static 'assets/js/browser.min.js' %}"></script>
+        <script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
+        <script src="{% static 'assets/js/util.js' %}"></script>
+        <script src="{% static 'assets/js/main.js' %}"></script>
+        <script src="{% static 'assets/js/add_on.js' %}"></script>
+
+</body>
+
+</html>
