@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from decouple import config
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'imagekit',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -129,13 +131,13 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 
-SODAPY_APP_TOKEN = '9waDdojJPGe9QFriUwH1cSj17'
-SODAPY_SOCRATA_DOMAIN = 'data.ny.gov'
-SODAPY_SOCRATA_DATASET_ID = 'd6yy-54nr'
+SODAPY_APP_TOKEN = config('SODAPY_APP_TOKEN')
+SODAPY_SOCRATA_DOMAIN = config('SODAPY_SOCRATA_DOMAIN')
+SODAPY_SOCRATA_DATASET_ID = config('SODAPY_SOCRATA_DATASET_ID')
 
 
 # Heroku: Update database configuration from $DATABASE_URL.
@@ -147,3 +149,11 @@ DATABASES['default'].update(db_from_env)
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
+AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME')
+AWS_S3_REGION_NAME = config('AWS_S3_REGION_NAME')
+DEFAULT_FILE_STORAGE = config('DEFAULT_FILE_STORAGE')
+AWS_DEFAULT_ACL = None
